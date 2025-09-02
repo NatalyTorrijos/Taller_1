@@ -19,5 +19,46 @@ public class Producto
         this.precio = precio;
         this.tiempo = tiempo;
     }
+    public string Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+
+    public string Nombre
+    {
+        get { return nombre; }
+        set { nombre = value; }
+    }
+
+    public string Tipo
+    {
+        get { return tipo; }
+        set { tipo = value; }
+    }
+
+    public float Peso
+    {
+        get { return peso; }
+        set { peso = value; }
+    }
+
+    public float Precio
+    {
+        get { return precio; }
+        set { precio = value; }
+    }
+
+    public float Tiempo
+    {
+        get { return tiempo; }
+        set { tiempo = value; }
+    }
+
+
+
+
 }
+
+
 
