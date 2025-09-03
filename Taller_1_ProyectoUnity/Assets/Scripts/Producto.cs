@@ -55,9 +55,7 @@ public class Producto
         set { tiempo = value; }
     }
 
-
-
-
+  
 }
 
 
