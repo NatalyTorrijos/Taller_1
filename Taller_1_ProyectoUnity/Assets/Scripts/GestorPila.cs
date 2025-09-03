@@ -14,11 +14,15 @@ public class GestorPila : MonoBehaviour
     private bool corriendo = false;
 
     public TMP_Text pilaText;
+    public TMP_Text TamañoPilaText;
+    public TMP_Text despachosTText;
+    public TMP_Text despachosText;
 
     public void ApilarProducto(Producto nuevo)
     {
         pila.Push(nuevo);
         Debug.Log($"Producto apilado: {nuevo.Nombre} | Pila actual: {pila.Count}");
+        TamañoPilaText.text = pila.Count.ToString();
         ActualizarTexto();
     }
 
@@ -54,7 +58,11 @@ public class GestorPila : MonoBehaviour
             if (pila.Count > 0)
             {
                 Producto p = pila.Pop();
+                
                 totalDespachados++;
+                despachosText.text = totalDespachados.ToString();
+                despachosTText.text = p.ToString();
+                TamañoPilaText.text = pila.Count.ToString();
                 tiempoTotalDespacho += p.Tiempo;
 
                 Debug.Log($"Despachado: {p.Nombre} | Tiempo: {p.Tiempo}s | Pila restante: {pila.Count}");
