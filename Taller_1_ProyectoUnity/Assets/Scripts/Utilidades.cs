@@ -12,7 +12,7 @@ public class GeneradorProductos : MonoBehaviour
         {
             enEjecucion = true;
             rutinaGeneracion = StartCoroutine(GenerarProductosCoroutine());
-            Debug.Log("Generación iniciada");
+           
         }
     }
     public void DetenerGeneracion()
@@ -25,7 +25,7 @@ public class GeneradorProductos : MonoBehaviour
                 StopCoroutine(rutinaGeneracion);
                 rutinaGeneracion = null;
             }
-            Debug.Log(" Generación detenida");
+            
         }
     }
     private IEnumerator GenerarProductosCoroutine()
