@@ -55,7 +55,13 @@ public class Producto
         set { tiempo = value; }
     }
 
-  
+    public override string ToString()
+    {
+        return $"{Nombre} ({Tipo}) | Peso: {Peso} | Precio: {Precio} | Tiempo: {Tiempo}\n";
+    }
+
+
+
 }
 
 
