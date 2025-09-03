@@ -8,7 +8,7 @@ public class LectorProductos : MonoBehaviour
 
     void Awake()
     {
-        // ✅ Ajuste: ahora busca en la carpeta "StreamingAssets"
+     
         string filePath = Path.Combine(Application.streamingAssetsPath, "productos.txt");
 
         if (File.Exists(filePath))
@@ -17,11 +17,11 @@ public class LectorProductos : MonoBehaviour
 
             foreach (string linea in lineas)
             {
-                if (string.IsNullOrWhiteSpace(linea)) continue; // evitar líneas vacías
+                if (string.IsNullOrWhiteSpace(linea)) continue; 
 
                 string[] datos = linea.Split('|');
 
-                if (datos.Length == 6) // validar que tenga todos los campos
+                if (datos.Length == 6) 
                 {
                     Producto p = new Producto(
                         datos[0],                // id como string
@@ -35,15 +35,15 @@ public class LectorProductos : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogWarning("⚠ Línea inválida en productos.txt: " + linea);
+                    Debug.LogWarning(" Línea inválida en productos.txt: " + linea);
                 }
             }
 
-            Debug.Log("✅ Productos cargados: " + listaProductos.Count);
+            Debug.Log(" Productos cargados: " + listaProductos.Count);
         }
         else
         {
-            Debug.LogError("❌ No se encontró el archivo en: " + filePath);
+            Debug.LogError("No se encontró el archivo en: " + filePath);
         }
     }
 
@@ -51,7 +51,7 @@ public class LectorProductos : MonoBehaviour
     {
         if (listaProductos.Count == 0)
         {
-            Debug.LogWarning("⚠ No hay productos cargados.");
+            Debug.LogWarning(" No hay productos cargados.");
             return null;
         }
 
