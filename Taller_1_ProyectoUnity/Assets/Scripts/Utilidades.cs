@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+
 public class GeneradorProductos : MonoBehaviour
+
 {
-    public LectorProductos lector;   
+    public LectorProductos lector; 
+    public GestorPila GestorPila;
     public float intervalo = 1f;    
     private bool enEjecucion = false;
+
+  
+
     private Coroutine rutinaGeneracion;
     public void IniciarGeneracion()
     {
@@ -12,7 +18,8 @@ public class GeneradorProductos : MonoBehaviour
         {
             enEjecucion = true;
             rutinaGeneracion = StartCoroutine(GenerarProductosCoroutine());
-           
+          GestorPila.IniciarDespacho();
+
         }
     }
     public void DetenerGeneracion()
@@ -25,7 +32,7 @@ public class GeneradorProductos : MonoBehaviour
                 StopCoroutine(rutinaGeneracion);
                 rutinaGeneracion = null;
             }
-            
+           GestorPila.DetenerDespacho();
         }
     }
     private IEnumerator GenerarProductosCoroutine()
@@ -38,12 +45,17 @@ public class GeneradorProductos : MonoBehaviour
             for (int i = 0; i < cantidad; i++)
             {
                 Producto nuevo = lector.GetProductoAleatorio();
+                if (nuevo != null)
+                {
+                 GestorPila.ApilarProducto(nuevo);
+                }
             }
 
             yield return new WaitForSeconds(intervalo);
         }
     }
+   
 }
 
-//a
+
 
