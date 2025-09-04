@@ -1,0 +1,19 @@
+{
+    "totalGenerados": 8,
+    "totalDespachados": 4,
+    "totalEnPila": 4,
+    "tiempoPromedioDespacho": 2.25,
+    "tiempoTotalGeneracion": 5.66236686706543,
+    "tiempoTotalDespacho": 9.0,
+    "despachadosPorTipo": [
+        {
+            "tipo": "Pesado",
+            "cantidad": 3
+        },
+        {
+            "tipo": "Basico",
+            "cantidad": 1
+        }
+    ],
+    "tipoMasDespachado": "Pesado"
+}
