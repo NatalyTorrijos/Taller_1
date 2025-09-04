@@ -8,7 +8,7 @@ public class GeneradorProductos : MonoBehaviour
     public GestorPila GestorPila;
     public float intervalo = 1f;    
     private bool enEjecucion = false;
-
+    
   
 
     private Coroutine rutinaGeneracion;
@@ -33,6 +33,7 @@ public class GeneradorProductos : MonoBehaviour
                 rutinaGeneracion = null;
             }
            GestorPila.DetenerDespacho();
+
         }
     }
     private IEnumerator GenerarProductosCoroutine()

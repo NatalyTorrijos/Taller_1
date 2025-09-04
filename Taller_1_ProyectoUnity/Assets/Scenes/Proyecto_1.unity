@@ -291,7 +291,7 @@ Camera:
   m_GameObject: {fileID: 66852226}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 4
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -1376,7 +1376,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 882404093}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1532486350}
+        m_TargetAssemblyTypeName: GeneradorProductos, Assembly-CSharp
+        m_MethodName: DetenerGeneracion
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &882404093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2721,6 +2733,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pilaText: {fileID: 419629145}
+  "Tama\xF1oPilaText": {fileID: 1732715912}
+  despachosTText: {fileID: 1458803571}
+  despachosText: {fileID: 1275188859}
 --- !u!1 &1969556705
 GameObject:
   m_ObjectHideFlags: 0
