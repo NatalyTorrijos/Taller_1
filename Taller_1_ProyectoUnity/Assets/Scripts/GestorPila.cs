@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
 public class GestorPila : MonoBehaviour
 {
     private Stack<Producto> pila = new Stack<Producto>();
@@ -12,6 +13,10 @@ public class GestorPila : MonoBehaviour
 
     private Coroutine despachoCoroutine;
     private bool corriendo = false;
+
+    // 🔹 Diccionario para contar productos por tipo
+    private Dictionary<string, int> despachadosPorTipo = new Dictionary<string, int>();
+
 
     public TMP_Text pilaText;
     public TMP_Text TamañoPilaText;
@@ -47,7 +52,7 @@ public class GestorPila : MonoBehaviour
                 despachoCoroutine = null;
             }
             Debug.Log(" Despacho detenido");
-            MostrarMetricas();
+           
         }
     }
 
@@ -58,12 +63,18 @@ public class GestorPila : MonoBehaviour
             if (pila.Count > 0)
             {
                 Producto p = pila.Pop();
-                
+
                 totalDespachados++;
                 despachosText.text = totalDespachados.ToString();
                 despachosTText.text = p.ToString();
                 TamañoPilaText.text = pila.Count.ToString();
                 tiempoTotalDespacho += p.Tiempo;
+
+                // 🔹 Registrar despachos por tipo
+                if (!despachadosPorTipo.ContainsKey(p.Tipo))
+                    despachadosPorTipo[p.Tipo] = 0;
+                despachadosPorTipo[p.Tipo]++;
+
 
                 Debug.Log($"Despachado: {p.Nombre} | Tiempo: {p.Tiempo}s | Pila restante: {pila.Count}");
 
@@ -76,16 +87,7 @@ public class GestorPila : MonoBehaviour
         }
     }
 
-    private void MostrarMetricas()
-    {
-        float tiempoPromedio = (totalDespachados > 0) ? tiempoTotalDespacho / totalDespachados : 0f;
-
-        Debug.Log("=====  MÉTRICAS DESPACHO =====");
-        Debug.Log("Total Despachados: " + totalDespachados);
-        Debug.Log("Total en Pila: " + pila.Count);
-        Debug.Log("Tiempo Promedio Despacho: " + tiempoPromedio.ToString("F2") + "s");
-        Debug.Log("================================");
-    }
+   
     private void ActualizarTexto()
     {
         string mostrar = "";
@@ -95,6 +97,26 @@ public class GestorPila : MonoBehaviour
         }
         pilaText.text = mostrar;
     }
+
+    public float GetTiempoTotalDespacho() { return tiempoTotalDespacho; }
+
+    public Dictionary<string, int> GetDespachadosPorTipo() { return despachadosPorTipo; }
+
+    public string GetTipoMasDespachado()
+    {
+        string maxTipo = "";
+        int maxCantidad = 0;
+        foreach (var kvp in despachadosPorTipo)
+        {
+            if (kvp.Value > maxCantidad)
+            {
+                maxCantidad = kvp.Value;
+                maxTipo = kvp.Key;
+            }
+        }
+        return maxTipo;
+    }
+
     public int GetTamañoPila() { return pila.Count; }
     public int GetTotalDespachados() { return totalDespachados; }
     public float GetTiempoPromedioDespacho()
