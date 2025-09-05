@@ -24,12 +24,12 @@ public class LectorProductos : MonoBehaviour
                 if (datos.Length == 6) 
                 {
                     Producto p = new Producto(
-                        datos[0],                // id como string
-                        datos[1],                // nombre
-                        datos[2],                // tipo
-                        float.Parse(datos[3]),   // peso
-                        float.Parse(datos[4]),   // precio
-                        float.Parse(datos[5])    // tiempo
+                        datos[0],               
+                        datos[1],                
+                        datos[2],                
+                        float.Parse(datos[3]),   
+                        float.Parse(datos[4]),   
+                        float.Parse(datos[5])    
                     );
                     listaProductos.Add(p);
                 }
