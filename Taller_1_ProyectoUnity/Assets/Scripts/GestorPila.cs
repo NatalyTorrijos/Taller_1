@@ -17,17 +17,19 @@ public class GestorPila : MonoBehaviour
     // 🔹 Diccionario para contar productos por tipo
     private Dictionary<string, int> despachadosPorTipo = new Dictionary<string, int>();
 
-
+    //TMP Panel Principal 
     public TMP_Text pilaText;
-    public TMP_Text TamañoPilaText;
-    public TMP_Text despachosTText;
-    public TMP_Text despachosText;
+    public TMP_Text tamañoPilaText;
+    public TMP_Text productoTopeText;
+    public TMP_Text productoDespachadoText;
 
     public void ApilarProducto(Producto nuevo)
     {
         pila.Push(nuevo);
         Debug.Log($"Producto apilado: {nuevo.Nombre} | Pila actual: {pila.Count}");
-        TamañoPilaText.text = pila.Count.ToString();
+        tamañoPilaText.text = pila.Count.ToString();
+        productoTopeText.text = pila.Peek().Nombre;   
+      
         ActualizarTexto();
     }
 
@@ -74,9 +76,11 @@ public class GestorPila : MonoBehaviour
                 Producto p = pila.Pop();
 
                 totalDespachados++;
-                despachosText.text = totalDespachados.ToString();
-                despachosTText.text = p.ToString();
-                TamañoPilaText.text = pila.Count.ToString();
+                tamañoPilaText.text = pila.Count.ToString();  
+                productoTopeText.text = (pila.Count > 0) ? pila.Peek().Nombre : "Pila vacía";
+                productoDespachadoText.text = p.Nombre;
+
+
                 tiempoTotalDespacho += p.Tiempo;
 
                 // 🔹 Registrar despachos por tipo
@@ -84,8 +88,8 @@ public class GestorPila : MonoBehaviour
                     despachadosPorTipo[p.Tipo] = 0;
                 despachadosPorTipo[p.Tipo]++;
 
-
-                Debug.Log($"Despachado: {p.Nombre} | Tiempo: {p.Tiempo}s | Pila restante: {pila.Count}");
+                Debug.Log($"Despachado: {p.Nombre} | Tiempo: {p.Tiempo}s | Tiempo total acumulado: {tiempoTotalDespacho}s | Pila restante: {pila.Count}");
+                
 
                 yield return new WaitForSeconds(p.Tiempo);
             }

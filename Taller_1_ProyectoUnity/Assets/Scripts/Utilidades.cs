@@ -15,7 +15,7 @@ public class GeneradorProductos : MonoBehaviour
     private int totalGenerados = 0;
     private float tiempoInicio;
 
-    // 🔹 Referencias UI
+    //TMP Panel de Resultados
     public GameObject panelResultados;
     public TMP_Text totalGeneradosText;
     public TMP_Text totalDespachadosText;
@@ -24,7 +24,7 @@ public class GeneradorProductos : MonoBehaviour
     public TMP_Text tiempoTotalGeneracionText;
     public TMP_Text tiempoTotalDespachoText;
     public TMP_Text tipoMasDespachadoText;
-    public TMP_Text despachoPorTipoText; // ✅ Nuevo campo para mostrar despachos por tipo
+    public TMP_Text despachoPorTipoText; 
 
     // 🔹 Botón "Cerrar Interacción"
     public void CerrarInteraccion()
