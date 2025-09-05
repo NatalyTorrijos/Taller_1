@@ -1,7 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.IO;
+﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using TMPro;
+using UnityEngine;
 
 public class GeneradorProductos : MonoBehaviour
 {
@@ -13,6 +14,16 @@ public class GeneradorProductos : MonoBehaviour
 
     private int totalGenerados = 0;
     private float tiempoInicio;
+
+    // 🔹 Referencias UI
+    public GameObject panelResultados;
+    public TMP_Text totalGeneradosText;
+    public TMP_Text totalDespachadosText;
+    public TMP_Text totalEnPilaText;
+    public TMP_Text tiempoPromedioText;
+    public TMP_Text tiempoTotalGeneracionText;
+    public TMP_Text tiempoTotalDespachoText;
+    public TMP_Text tipoMasDespachadoText;
 
     // 🔹 Nueva función para botón "Cerrar Interacción"
     public void CerrarInteraccion()
@@ -31,7 +42,7 @@ public class GeneradorProductos : MonoBehaviour
     {
         try
         {
-            // 🔹 Convertir el diccionario en una lista serializable
+            
             var dict = GestorPila.GetDespachadosPorTipo();
             List<TipoConteo> listaTipos = new List<TipoConteo>();
             foreach (var kvp in dict)
@@ -70,7 +81,7 @@ public class GeneradorProductos : MonoBehaviour
     {
         if (!enEjecucion)
         {
-            tiempoInicio = Time.time; // 🔹 Guardar tiempo de inicio
+            tiempoInicio = Time.time; 
             enEjecucion = true;
             rutinaGeneracion = StartCoroutine(GenerarProductosCoroutine());
             GestorPila.IniciarDespacho();

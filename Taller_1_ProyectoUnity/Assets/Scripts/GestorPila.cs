@@ -56,6 +56,15 @@ public class GestorPila : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        // 🔹 Inicializar los tipos posibles en 0
+        despachadosPorTipo["Basico"] = 0;
+        despachadosPorTipo["Fragil"] = 0;
+        despachadosPorTipo["Pesado"] = 0;
+    }
+
+
     private IEnumerator DespacharProductos()
     {
         while (corriendo)
