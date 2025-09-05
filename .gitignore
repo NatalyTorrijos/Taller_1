@@ -97,3 +97,6 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+Taller_1_ProyectoUnity/Assets/StreamingAssets/resultadosSimulacion.json
+Taller_1_ProyectoUnity/Assets/StreamingAssets/resultadosSimulacion.json
+*.json
