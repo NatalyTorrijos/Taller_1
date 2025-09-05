@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine;
+using System.Collections;
 using System.IO;
+using System.Collections.Generic;
 using TMPro;
-using UnityEngine;
 
 public class GeneradorProductos : MonoBehaviour
 {
@@ -24,17 +24,46 @@ public class GeneradorProductos : MonoBehaviour
     public TMP_Text tiempoTotalGeneracionText;
     public TMP_Text tiempoTotalDespachoText;
     public TMP_Text tipoMasDespachadoText;
+    public TMP_Text despachoPorTipoText; // ✅ Nuevo campo para mostrar despachos por tipo
 
-    // 🔹 Nueva función para botón "Cerrar Interacción"
+    // 🔹 Botón "Cerrar Interacción"
     public void CerrarInteraccion()
     {
         // 1. Detener generación y despacho
         DetenerGeneracion();
 
-        // 2. Mostrar métricas finales
-       
+        // 2. Calcular métricas
+        int generados = totalGenerados;
+        int despachados = GestorPila.GetTotalDespachados();
+        int enPila = GestorPila.GetTamañoPila();
+        float promedio = GestorPila.GetTiempoPromedioDespacho();
+        float totalGen = Time.time - tiempoInicio;
+        float totalDesp = GestorPila.GetTiempoTotalDespacho();
+        string tipoMas = GestorPila.GetTipoMasDespachado();
 
-        // 3. Guardar resultados en JSON
+        // 3. Mostrar en UI
+        if (panelResultados != null)
+        {
+            panelResultados.SetActive(true);
+            totalGeneradosText.text = "Total Generados: " + generados;
+            totalDespachadosText.text = "Total Despachados: " + despachados;
+            totalEnPilaText.text = "Total en Pila: " + enPila;
+            tiempoPromedioText.text = "Promedio Despacho: " + promedio.ToString("F2") + "s";
+            tiempoTotalGeneracionText.text = "Tiempo Total Generación: " + totalGen.ToString("F2") + "s";
+            tiempoTotalDespachoText.text = "Tiempo Total Despacho: " + totalDesp.ToString("F2") + "s";
+            tipoMasDespachadoText.text = "Tipo más despachado: " + tipoMas;
+
+            // 🔹 Mostrar detalle de despachos por tipo
+            var dict = GestorPila.GetDespachadosPorTipo();
+            string detalleTipos = "Despachos por tipo:\n";
+            foreach (var kvp in dict)
+            {
+                detalleTipos += kvp.Key + ": " + kvp.Value + "\n";
+            }
+            despachoPorTipoText.text = detalleTipos;
+        }
+
+        // 4. Guardar resultados en JSON
         GuardarResultadosJSON();
     }
 
@@ -42,7 +71,7 @@ public class GeneradorProductos : MonoBehaviour
     {
         try
         {
-            
+            // 🔹 Convertir diccionario en lista serializable
             var dict = GestorPila.GetDespachadosPorTipo();
             List<TipoConteo> listaTipos = new List<TipoConteo>();
             foreach (var kvp in dict)
@@ -81,7 +110,7 @@ public class GeneradorProductos : MonoBehaviour
     {
         if (!enEjecucion)
         {
-            tiempoInicio = Time.time; 
+            tiempoInicio = Time.time; // 🔹 Guardar tiempo de inicio
             enEjecucion = true;
             rutinaGeneracion = StartCoroutine(GenerarProductosCoroutine());
             GestorPila.IniciarDespacho();
