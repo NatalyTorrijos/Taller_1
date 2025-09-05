@@ -1,23 +1,24 @@
 {
-    "totalGenerados": 23,
-    "totalDespachados": 6,
-    "totalEnPila": 17,
-    "tiempoPromedioDespacho": 1.6666666269302369,
-    "tiempoTotalGeneracion": 9.733255386352539,
-    "tiempoTotalDespacho": 10.0,
+    "totalGenerados": 11,
+    "totalDespachados": 4,
+    "totalNoDespachados": 7,
+    "totalEnPila": 7,
+    "tiempoPromedioDespacho": 2.25,
+    "tiempoTotalGeneracion": 5.684778690338135,
+    "tiempoTotalDespacho": 9.0,
     "despachadosPorTipo": [
         {
             "tipo": "Basico",
-            "cantidad": 2
+            "cantidad": 1
         },
         {
             "tipo": "Fragil",
-            "cantidad": 2
+            "cantidad": 1
         },
         {
             "tipo": "Pesado",
             "cantidad": 2
         }
     ],
-    "tipoMasDespachado": "Basico"
+    "tipoMasDespachado": "Pesado"
 }

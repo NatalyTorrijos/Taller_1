@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-
 public class GestorPila : MonoBehaviour
 {
     private Stack<Producto> pila = new Stack<Producto>();
@@ -28,8 +27,7 @@ public class GestorPila : MonoBehaviour
         pila.Push(nuevo);
         Debug.Log($"Producto apilado: {nuevo.Nombre} | Pila actual: {pila.Count}");
         tamañoPilaText.text = pila.Count.ToString();
-        productoTopeText.text = pila.Peek().Nombre;   
-      
+        productoTopeText.text = pila.Peek().Nombre;
         ActualizarTexto();
     }
 
@@ -53,8 +51,7 @@ public class GestorPila : MonoBehaviour
                 StopCoroutine(despachoCoroutine);
                 despachoCoroutine = null;
             }
-            Debug.Log(" Despacho detenido");
-           
+            Debug.Log("Despacho detenido");
         }
     }
 
@@ -66,7 +63,6 @@ public class GestorPila : MonoBehaviour
         despachadosPorTipo["Pesado"] = 0;
     }
 
-
     private IEnumerator DespacharProductos()
     {
         while (corriendo)
@@ -76,10 +72,9 @@ public class GestorPila : MonoBehaviour
                 Producto p = pila.Pop();
 
                 totalDespachados++;
-                tamañoPilaText.text = pila.Count.ToString();  
+                tamañoPilaText.text = pila.Count.ToString();
                 productoTopeText.text = (pila.Count > 0) ? pila.Peek().Nombre : "Pila vacía";
                 productoDespachadoText.text = p.Nombre;
-
 
                 tiempoTotalDespacho += p.Tiempo;
 
@@ -89,7 +84,6 @@ public class GestorPila : MonoBehaviour
                 despachadosPorTipo[p.Tipo]++;
 
                 Debug.Log($"Despachado: {p.Nombre} | Tiempo: {p.Tiempo}s | Tiempo total acumulado: {tiempoTotalDespacho}s | Pila restante: {pila.Count}");
-                
 
                 yield return new WaitForSeconds(p.Tiempo);
             }
@@ -100,7 +94,6 @@ public class GestorPila : MonoBehaviour
         }
     }
 
-   
     private void ActualizarTexto()
     {
         string mostrar = "";
@@ -112,8 +105,9 @@ public class GestorPila : MonoBehaviour
     }
 
     public float GetTiempoTotalDespacho() { return tiempoTotalDespacho; }
-
     public Dictionary<string, int> GetDespachadosPorTipo() { return despachadosPorTipo; }
+    public int GetTamañoPila() { return pila.Count; }
+    public int GetTotalDespachados() { return totalDespachados; }
 
     public string GetTipoMasDespachado()
     {
@@ -130,8 +124,6 @@ public class GestorPila : MonoBehaviour
         return maxTipo;
     }
 
-    public int GetTamañoPila() { return pila.Count; }
-    public int GetTotalDespachados() { return totalDespachados; }
     public float GetTiempoPromedioDespacho()
     {
         return (totalDespachados > 0) ? tiempoTotalDespacho / totalDespachados : 0f;

@@ -19,12 +19,12 @@ public class GeneradorProductos : MonoBehaviour
     public GameObject panelResultados;
     public TMP_Text totalGeneradosText;
     public TMP_Text totalDespachadosText;
-    public TMP_Text totalEnPilaText;
+    public TMP_Text totalNoDespachadosText; // 🔹 Nuevo
     public TMP_Text tiempoPromedioText;
     public TMP_Text tiempoTotalGeneracionText;
     public TMP_Text tiempoTotalDespachoText;
     public TMP_Text tipoMasDespachadoText;
-    public TMP_Text despachoPorTipoText; 
+    public TMP_Text despachoPorTipoText;
 
     // 🔹 Botón "Cerrar Interacción"
     public void CerrarInteraccion()
@@ -35,6 +35,7 @@ public class GeneradorProductos : MonoBehaviour
         // 2. Calcular métricas
         int generados = totalGenerados;
         int despachados = GestorPila.GetTotalDespachados();
+        int noDespachados = generados - despachados; // 🔹 Nuevo
         int enPila = GestorPila.GetTamañoPila();
         float promedio = GestorPila.GetTiempoPromedioDespacho();
         float totalGen = Time.time - tiempoInicio;
@@ -47,7 +48,7 @@ public class GeneradorProductos : MonoBehaviour
             panelResultados.SetActive(true);
             totalGeneradosText.text = "Total Generados: " + generados;
             totalDespachadosText.text = "Total Despachados: " + despachados;
-            totalEnPilaText.text = "Total en Pila: " + enPila;
+            totalNoDespachadosText.text = "No Despachados: " + noDespachados; // 🔹 Nuevo
             tiempoPromedioText.text = "Promedio Despacho: " + promedio.ToString("F2") + "s";
             tiempoTotalGeneracionText.text = "Tiempo Total Generación: " + totalGen.ToString("F2") + "s";
             tiempoTotalDespachoText.text = "Tiempo Total Despacho: " + totalDesp.ToString("F2") + "s";
@@ -83,6 +84,7 @@ public class GeneradorProductos : MonoBehaviour
             {
                 totalGenerados = totalGenerados,
                 totalDespachados = GestorPila.GetTotalDespachados(),
+                totalNoDespachados = totalGenerados - GestorPila.GetTotalDespachados(), // 🔹 Nuevo
                 totalEnPila = GestorPila.GetTamañoPila(),
                 tiempoPromedioDespacho = GestorPila.GetTiempoPromedioDespacho(),
                 tiempoTotalGeneracion = Time.time - tiempoInicio,
@@ -173,10 +175,11 @@ public class MetricasSimulacion
 {
     public int totalGenerados;
     public int totalDespachados;
+    public int totalNoDespachados; // 🔹 Nuevo
     public int totalEnPila;
     public float tiempoPromedioDespacho;
     public float tiempoTotalGeneracion;
     public float tiempoTotalDespacho;
-    public List<TipoConteo> despachadosPorTipo; // ✅ ahora lista serializable
+    public List<TipoConteo> despachadosPorTipo;
     public string tipoMasDespachado;
 }
