@@ -1,15 +1,15 @@
 {
-    "totalGenerados": 4,
-    "totalDespachados": 1,
-    "totalNoDespachados": 3,
-    "totalEnPila": 3,
-    "tiempoPromedioDespacho": 5.0,
-    "tiempoTotalGeneracion": 1.164463996887207,
-    "tiempoTotalDespacho": 5.0,
+    "totalGenerados": 9,
+    "totalDespachados": 2,
+    "totalNoDespachados": 7,
+    "totalEnPila": 7,
+    "tiempoPromedioDespacho": 2.0,
+    "tiempoTotalGeneracion": 3.208329200744629,
+    "tiempoTotalDespacho": 4.0,
     "despachadosPorTipo": [
         {
             "tipo": "Basico",
-            "cantidad": 1
+            "cantidad": 2
         },
         {
             "tipo": "Fragil",

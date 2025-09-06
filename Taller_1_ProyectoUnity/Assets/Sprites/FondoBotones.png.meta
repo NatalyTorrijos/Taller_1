@@ -435,7 +435,19 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      FondoBotones_0: -9164248705281452
+      FondoBotones_1: 2086212253023544148
+      FondoBotones_10: -7942596403648048441
+      FondoBotones_11: -7910250048797690230
+      FondoBotones_2: -5743188595211232674
+      FondoBotones_3: -2590680503807019066
+      FondoBotones_4: 1727006137521716009
+      FondoBotones_5: -871564054970495395
+      FondoBotones_6: -6954042103928432286
+      FondoBotones_7: -2112685441943548275
+      FondoBotones_8: -5635110100714707191
+      FondoBotones_9: 1887291643748730641
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
